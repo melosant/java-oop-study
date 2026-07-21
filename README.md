@@ -18,12 +18,12 @@ Este material serve como um catálogo pessoal de consultas para arquitetura de c
 
 Abaixo está a trilha de conceitos que estão sendo implementados e testados nos pacotes deste repositório:
 
-- [ ] **1. Fundamentos da POO**
+- [X] **1. Fundamentos da POO**
     - Classes, Atributos e Métodos
     - Construtores, palavra `this`, Sobrecarga e Encapsulamento
     - Tipos primitivos vs Tipos referência
     - Vetores e manipulação de memória
-- [ ] **2. Modelagem e Relacionamentos**
+- [X] **2. Modelagem e Relacionamentos**
     - Enumerações e Composição de Objetos
 - [ ] **3. Os Pilares da POO**
     - Herança (Extensão de comportamento)
