@@ -19,7 +19,9 @@ public class BusinessAccount extends Account { // a classe extende a superclasse
     }
 
     @Override
-    public void withdraw(double amount) {
+    // palavra final no método dita que esse método não pode ser sobreposto.
+    // é comum que utilize-se palavras final em métodos já sobrepostos (sobreposições múltiplas geram inconsistencias)
+    public final void withdraw(double amount) {
         super.withdraw(amount); // efetua a lógica da superclasse de saldo normalmente
         balance -= 2.0; // adiciona um acréscimp
     }

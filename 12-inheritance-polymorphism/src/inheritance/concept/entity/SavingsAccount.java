@@ -1,6 +1,7 @@
 package inheritance.concept.entity;
 
-public class SavingsAccount extends Account{
+// a palavra final dita que essa classe não pode ser herdada
+public final class SavingsAccount extends Account{
     private Double interestRate;
 
     public SavingsAccount() {
