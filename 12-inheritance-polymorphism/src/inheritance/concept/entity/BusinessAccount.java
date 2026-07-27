@@ -18,6 +18,12 @@ public class BusinessAccount extends Account { // a classe extende a superclasse
         }
     }
 
+    @Override
+    public void withdraw(double amount) {
+        super.withdraw(amount); // efetua a lógica da superclasse de saldo normalmente
+        balance -= 2.0; // adiciona um acréscimp
+    }
+
     public Double getLoanLimit() {
         return loanLimit;
     }
