@@ -6,6 +6,7 @@ import taskmanager.enums.StatusTarefa;
 
 import java.time.LocalDate;
 
+// subclasse herdando da classe abstrata
 public class TarefaRecorrente extends Tarefa {
     private FrequenciaRecorrencia frequencia;
 
@@ -17,6 +18,12 @@ public class TarefaRecorrente extends Tarefa {
         this.frequencia = frequencia;
     }
 
+    /*
+    sobrescrita do método abstrato: aplicando sua própria lógica/comportamento em cima de um método declarado na
+    superclasse Tarefa.(polimorfismo)
+
+    a prioridade é retornada de acordo com a frequência declarada
+    */
     @Override
     public PrioridadeTarefa calcularPrioridade() {
         if (frequencia == FrequenciaRecorrencia.DIARIA) {
@@ -28,6 +35,7 @@ public class TarefaRecorrente extends Tarefa {
         }
     }
 
+    // sobrescrita do toString, reaproveitando o já declarado na superclasse
     @Override
     public String toString() {
         return super.toString() + "\n    - Frequência: " + frequencia;

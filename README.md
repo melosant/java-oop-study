@@ -25,7 +25,7 @@ Abaixo está a trilha de conceitos que estão sendo implementados e testados nos
     - Vetores e manipulação de memória
 - [X] **2. Modelagem e Relacionamentos**
     - Enumerações e Composição de Objetos
-- [ ] **3. Os Pilares da POO**
+- [X] **3. Os Pilares da POO**
     - Herança (Extensão de comportamento)
     - Polimorfismo e *Upcasting/Downcasting*
     - Classes e Métodos Abstratos

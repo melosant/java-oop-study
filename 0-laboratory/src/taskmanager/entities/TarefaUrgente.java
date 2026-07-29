@@ -13,6 +13,12 @@ public class TarefaUrgente extends Tarefa {
         super(titulo, descricao, dataCriacao, responsavel, statusTarefa);
     }
 
+    /*
+    sobrescrita do método abstrato: aplicando sua própria lógica/comportamento em cima de um método declarado na
+    superclasse Tarefa.(polimorfismo)
+
+    toda tarefa urgente retorna com prioridade máxima
+     */
     @Override
     public PrioridadeTarefa calcularPrioridade() {
         return PrioridadeTarefa.MAXIMA;

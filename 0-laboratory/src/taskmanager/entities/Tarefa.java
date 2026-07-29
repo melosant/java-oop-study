@@ -7,11 +7,13 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+// classe base abstrata
 public abstract class Tarefa {
     protected String titulo;
     protected String descricao;
     protected LocalDate dataCriacao;
 
+    // composição: uma tarefa TEM um responsavel.
     protected Responsavel responsavel;
     protected StatusTarefa statusTarefa;
 
@@ -26,8 +28,10 @@ public abstract class Tarefa {
         this.statusTarefa = statusTarefa;
     }
 
+    // método abstrato -> método polimórfico
     public abstract PrioridadeTarefa calcularPrioridade();
 
+    // método toString base para o resto (reaproveitamento)
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

@@ -6,6 +6,7 @@ import taskmanager.enums.StatusTarefa;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+// subclasse herdando da classe abstrata
 public class TarefaComPrazo extends Tarefa {
     private LocalDate dataPrazo;
 
@@ -17,10 +18,17 @@ public class TarefaComPrazo extends Tarefa {
         this.dataPrazo = dataPrazo;
     }
 
+    // função aux. para cálculo de diferença de dias (dia atual - prazo)
     private long calculoDias() {
         return ChronoUnit.DAYS.between(LocalDate.now(), dataPrazo);
     }
 
+    /*
+    sobrescrita do método abstrato: aplicando sua própria lógica/comportamento em cima de um método declarado na
+    superclasse Tarefa.(polimorfismo)
+
+    a prioridade é retornadada de acordo com a quantidade de dias para vencimento do prazo
+     */
     @Override
     public PrioridadeTarefa calcularPrioridade() {
         long dias = calculoDias();
@@ -36,6 +44,7 @@ public class TarefaComPrazo extends Tarefa {
         }
     }
 
+    // sobrescrita do toString, reaproveitando o já declarado na superclasse
     @Override
     public String toString() {
         return super.toString() + "\n    - Dias para Vencimento: " + calculoDias();
