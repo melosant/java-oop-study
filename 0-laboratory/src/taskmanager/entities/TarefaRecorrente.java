@@ -1,0 +1,43 @@
+package taskmanager.entities;
+
+import taskmanager.enums.FrequenciaRecorrencia;
+import taskmanager.enums.PrioridadeTarefa;
+import taskmanager.enums.StatusTarefa;
+
+import java.time.LocalDate;
+
+public class TarefaRecorrente extends Tarefa {
+    private FrequenciaRecorrencia frequencia;
+
+    public TarefaRecorrente() {
+    }
+
+    public TarefaRecorrente(String titulo, String descricao, LocalDate dataCriacao, Responsavel responsavel, StatusTarefa statusTarefa, FrequenciaRecorrencia frequencia) {
+        super(titulo, descricao, dataCriacao, responsavel, statusTarefa);
+        this.frequencia = frequencia;
+    }
+
+    @Override
+    public PrioridadeTarefa calcularPrioridade() {
+        if (frequencia == FrequenciaRecorrencia.DIARIA) {
+            return PrioridadeTarefa.BAIXA;
+        } else if (frequencia == FrequenciaRecorrencia.SEMANAL) {
+            return PrioridadeTarefa.MEDIA;
+        } else {
+            return PrioridadeTarefa.ALTA;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\n    - Frequência: " + frequencia;
+    }
+
+    public FrequenciaRecorrencia getFrequencia() {
+        return frequencia;
+    }
+
+    public void setFrequencia(FrequenciaRecorrencia frequencia) {
+        this.frequencia = frequencia;
+    }
+}
