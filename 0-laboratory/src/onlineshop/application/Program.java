@@ -3,7 +3,9 @@ package onlineshop.application;
 import onlineshop.model.entities.ItemPedido;
 import onlineshop.model.entities.Pedido;
 import onlineshop.model.entities.Produto;
+import onlineshop.model.exceptions.EstoqueInsuficienteException;
 import onlineshop.model.exceptions.PedidoException;
+import onlineshop.model.exceptions.QuantidadeInvalidaException;
 
 public class Program {
     public static void main(String[] args) {
@@ -11,25 +13,26 @@ public class Program {
         System.out.println(p1);
 
         Pedido pedido = new Pedido("Carlos");
-        adicionarItens(pedido, p1);
+        adicionarItem(pedido, 3, p1);
+        adicionarItem(pedido, 3, p1);
         finalizarEExibir(pedido);
     }
 
-    public static void adicionarItens(Pedido pedido, Produto produto) {
+    // múltiplos catches só são viáveis quando tem comportamentos diferentes
+    public static void adicionarItem(Pedido pedido, int quantidade, Produto produto) {
         try {
-            System.out.print("Adicionar 3 unidades: ");
-            pedido.adicionarItem(produto, 3);
-            System.out.println("OK");
+            pedido.adicionarItem(produto, quantidade);
 
-            System.out.print("Adicionar mais 3 unidades: ");
-            pedido.adicionarItem(produto, 3);
-            System.out.println("OK");
-
+        } catch (EstoqueInsuficienteException e) {
+            System.out.println(e.getMessage() + " Estoque disponível: " + produto.getEstoque());
+        } catch (QuantidadeInvalidaException e) {
+            System.out.println(e.getMessage() + " Tente novamente com um valor maior que zero.");
         } catch (PedidoException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Erro inesperado no pedido: " + e.getMessage());
         }
     }
 
+    // só um catch com a classe base pois teriam o mesmo comportamento
     public static void finalizarEExibir(Pedido pedido) {
         try {
             double total = pedido.finalizarPedido();

@@ -1,6 +1,9 @@
 package onlineshop.model.entities;
 
+import onlineshop.model.exceptions.EstoqueInsuficienteException;
 import onlineshop.model.exceptions.PedidoException;
+import onlineshop.model.exceptions.PedidoVazioException;
+import onlineshop.model.exceptions.QuantidadeInvalidaException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +27,10 @@ public class Pedido {
     */
     public void adicionarItem(Produto produto, int quantidade) throws PedidoException {
         if (quantidade <= 0) {
-            throw new PedidoException("Erro: Insira uma quantidade válida.");
+            throw new QuantidadeInvalidaException();
         }
         if (quantidade > produto.getEstoque()) {
-            throw new PedidoException("Erro: Estoque insuficiente.");
+            throw new EstoqueInsuficienteException();
         }
 
         carrinho.add(new ItemPedido(produto, quantidade));
@@ -37,7 +40,7 @@ public class Pedido {
     public double finalizarPedido() throws PedidoException {
         // finaliza o pedido verificando se o carrinho está vazio e retornando o total dele
         if (carrinho.isEmpty()) {
-            throw new PedidoException("Erro: Não é possível finalizar um pedido com carrinho vazio.");
+            throw new PedidoVazioException();
         }
 
         return calcularTotal();

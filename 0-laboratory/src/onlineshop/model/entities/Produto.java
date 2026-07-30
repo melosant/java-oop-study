@@ -1,6 +1,7 @@
 package onlineshop.model.entities;
 
 import onlineshop.model.exceptions.PedidoException;
+import onlineshop.model.exceptions.QuantidadeInvalidaException;
 
 public class Produto {
     private String nome;
@@ -19,7 +20,7 @@ public class Produto {
     // função auxiliar que diminui a quantidade do produto no estoque
     public void diminuirEstoque(int quantidade) throws PedidoException {
         if (quantidade <= 0) {
-            throw new PedidoException("Erro: insira uma quantidade válida.");
+            throw new QuantidadeInvalidaException();
         }
 
         estoque -= quantidade;
