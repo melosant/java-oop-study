@@ -1,9 +1,12 @@
 package throwsexception.application;
 
 import throwsexception.model.entities.Reservation;
+import throwsexception.model.exceptions.DomainException;
 
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Program {
@@ -11,17 +14,14 @@ public class Program {
         Scanner sc = new Scanner(System.in);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        System.out.print("Room number: ");
-        int number = sc.nextInt();
-        System.out.print("Check-in date (dd/mm/yyyy): ");
-        LocalDate checkIn = LocalDate.parse(sc.next(), formatter);
-        System.out.print("Check-out date (dd/mm/yyyy): ");
-        LocalDate checkOut = LocalDate.parse(sc.next(), formatter);
+        try {
+            System.out.print("Room number: ");
+            int number = sc.nextInt();
+            System.out.print("Check-in date (dd/mm/yyyy): ");
+            LocalDate checkIn = LocalDate.parse(sc.next(), formatter);
+            System.out.print("Check-out date (dd/mm/yyyy): ");
+            LocalDate checkOut = LocalDate.parse(sc.next(), formatter);
 
-        // primeiro verifica se a data de check-in é de fato anterior à de check-out
-        if (!checkOut.isAfter(checkIn)) {
-            System.out.println("Error in reservation: check-out date must be after check-in date");
-        } else {
             Reservation reservation = new Reservation(number, checkIn, checkOut);
             System.out.println("Reservation: " + reservation);
 
@@ -31,18 +31,15 @@ public class Program {
             System.out.print("Check-out date (dd/mm/yyyy): ");
             checkOut = LocalDate.parse(sc.next(), formatter);
 
-            /*
-            antes de fazer o update das datas:
-            - verifica se as novas datas são de fato futuras
-            - verifica novamente se a data de check-in é anterior à de check-out
-            - caso passe nas verificações, faz o update
-             */
-            String error = reservation.updateDates(checkIn, checkOut);
-            if (error != null) {
-                System.out.println("Error in reservation: " + error);
-            } else {
-                System.out.println("Reservation: " + reservation);
-            }
+            reservation.updateDates(checkIn, checkOut);
+            System.out.println("Reservation: " + reservation);
+
+        } catch (DomainException e) {
+            System.out.println("Error in reservation: " + e.getMessage());
+        } catch (InputMismatchException e) {
+            System.out.println("Error in reservation: input mismatch.");
+        } catch (RuntimeException e) {
+            System.out.println("Unexpected error!");
         }
 
         sc.close();
