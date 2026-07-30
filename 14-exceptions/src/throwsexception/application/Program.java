@@ -37,12 +37,10 @@ public class Program {
             - verifica novamente se a data de check-in é anterior à de check-out
             - caso passe nas verificações, faz o update
              */
-            if (checkIn.isBefore(LocalDate.now()) || checkOut.isBefore(LocalDate.now())) {
-                System.out.println("Error in reservation: Reservation dates for update must be future");
-            } else if (!checkOut.isAfter(checkIn)) {
-                System.out.println("Error in reservation: check-out date must be after check-in date");
+            String error = reservation.updateDates(checkIn, checkOut);
+            if (error != null) {
+                System.out.println("Error in reservation: " + error);
             } else {
-                reservation.updateDates(checkIn, checkOut);
                 System.out.println("Reservation: " + reservation);
             }
         }
