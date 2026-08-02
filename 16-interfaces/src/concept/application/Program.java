@@ -29,6 +29,7 @@ public class Program {
         System.out.print("Entre com o preço por dia: $");
         double pricePerDay = sc.nextDouble();
 
+        // passa como argumento um objeto de uma classe que implementa a TaxService (funciona como upcasting)
         RentalService rentalService = new RentalService(pricePerHour, pricePerDay, new BrazilTaxService());
         rentalService.processInvoice(cr);
 
