@@ -29,7 +29,7 @@ Abaixo está a trilha de conceitos que estão sendo implementados e testados nos
     - Herança (Extensão de comportamento)
     - Polimorfismo e *Upcasting/Downcasting*
     - Classes e Métodos Abstratos
-- [ ] **4. Tratamento de Erros**
+- [X] **4. Tratamento de Erros**
     - Blocos `try/catch`
     - Criação de Exceções Personalizadas
 - [ ] **5. Estruturas de Dados e Coleções**
